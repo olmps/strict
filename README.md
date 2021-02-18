@@ -1,5 +1,7 @@
 # Strict
 
+[![pub package](https://img.shields.io/pub/v/strict?style=flat-square)](https://pub.dev/packages/strict)
+
 A heavily opinionated analysis_options for Dart & Flutter projects with strict - but
 justified - lint rules. Sometimes being [pedantic](https://github.com/google/pedantic) is not enough.
 
