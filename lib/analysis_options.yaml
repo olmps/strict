@@ -1,42 +1,55 @@
 analyzer:
-  # strong-mode:
+  strong-mode:
+    # Because we have opted to not use the `always_specify_types` rule, we should reinforce that dynamic should only be
+    # used when Dart can't infer so.
+    implicit-dynamic: false
   #   implicit-casts: false
-  #   implicit-dynamic: false
 
   errors:
     # The benefits of being able to inject environment variable are substantial. This should be used with care and
     # only when necessary.
     do_not_use_environment: warning
 
-# The ones that doesn't have any comment, they're usually worth due to standardizing concerns - improves readability -,
-# and because the own rule description's is useful enough, meaning that we agree with its particular point of view.
+    # Just like the bang operator (the `!` after optional types), we should not be restricted to use `as` to improve the
+    # readability of some edge-cases, when we are completly sure that the respective field can be cast to that
+    # particular type.
+    avoid_as: warning
+
+# The ones that don't have any comments are USUALLY (high emphasis on usually) worth due to standardizing concerns -
+# improves readability -, and because the own rules descriptions (in https://dart-lang.github.io/linter/lints/) are
+# useful enough (meaning that we agree with its particular point of view).
 linter:
   rules:
     - always_declare_return_types
     - always_put_control_body_on_new_line
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
-    # Most of the times, letting Dart infer is just as readable and, consequently, way less verbose.
-    # There are a bunch of cases (like generics) and such that we don't need to know its type, but it would still
-    # force use to specify types. This rule is too severe.
+    # Most of the times, letting Dart infer is just as readable and, consequently, way less verbose. There are a bunch
+    # of cases (like frequently with generics) that we don't need to specify a particular type, but we would still be
+    # forced anyways (and more often than not, they are really verbose).
+    #
+    # To make sure that we don't have problems with `dynamic` types floating around, we set the `implicity-dynamic` to
+    # `false`, meaning that we have to explicitly type your `dynamic` fields - just for type-safety measures.
+    #
+    # This rule may be valid if you think that ALWAYS preffixing a field with its type is better for readability.
     # - always_specify_types
     - always_use_package_imports
     - annotate_overrides
-    # Because we assume that most cases we will have really well-typed application, it's good to explicitly declare
-    # when an object should be dynamic
-    # - avoid_annotating_with_dynamic
-    # - avoid_as # TODO: -> https://dart-lang.github.io/linter/lints/avoid_as.html
+    - avoid_annotating_with_dynamic
+    - avoid_as
     - avoid_bool_literals_in_conditional_expressions
     - avoid_catches_without_on_clauses
     # Read more why we should use Exceptions to be caught instead of
     # [Errors](https://stackoverflow.com/a/58361954/8558606)
     - avoid_catching_errors
-    # While - quoting: 'dart allows functions to exist outside of classes for this very reason', sometimes, we just want to
-    # reinforce global namespaces for the sake of clear encapsulation. Also, there are cases where the repeated usage may
-    # become cumbersome if we must do something like `import '../myLib' as MyLib` every time, just to create a particular
-    # namespace for that class.
+    # While - quoting: 'dart allows functions to exist outside of classes for this very reason', sometimes, we just want
+    # to reinforce global namespaces for the sake of clear encapsulation. Also, there are cases where the repeated usage
+    # may become cumbersome if we must do something like `import '../myLib' as MyLib` every time, just to create a
+    # particular namespace for that class.
     # - avoid_classes_with_only_static_members
     - avoid_double_and_int_checks
+    # Experimental/unreleased, but surely effective. Needs to be added when it's ready to use.
+    # - avoid_dynamic_calls
     - avoid_empty_else
     - avoid_equals_and_hash_code_on_mutable_classes
     - avoid_escaping_inner_quotes
@@ -52,18 +65,23 @@ linter:
     - avoid_print
     - avoid_private_typedef_functions
     - avoid_redundant_argument_values
-    - avoid_relative_lib_imports # TODO: Shouldn't `always_use_package_imports` already solve this?
+    # Good complement on `always_use_package_imports`
+    - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
-    - avoid_returning_null
-    - avoid_returning_null_for_future
-    - avoid_returning_null_for_void
+    # This made sense in a scenario where NNBD didn't exist. Now that we can deal with optional types, expecting an
+    # optional return from primitive types are completly acceptable.
+    # - avoid_returning_null
+    # Not applicable with NNBD.
+    # - avoid_returning_null_for_future
+    # Not applicable with NNBD.
+    # - avoid_returning_null_for_void
     - avoid_returning_this
     - avoid_setters_without_getters
     - avoid_shadowing_type_parameters
     - avoid_single_cascade_in_expression_statements
     - avoid_slow_async_io # Read more at: https://dart-lang.github.io/linter/lints/avoid_slow_async_io.html
-    # Waiting new stable release
+    # TODO: not quite sure yet
     # - avoid_type_to_string
     - avoid_types_as_parameter_names
     - avoid_types_on_closure_parameters
@@ -76,15 +94,15 @@ linter:
     - camel_case_types
     - cancel_subscriptions
     - cascade_invocations
-    # Exprimental - Unreleased in Dart. We should use when ready.
-    # - cast_nullable_to_non_nullable
+    - cast_nullable_to_non_nullable
     # Not working as inteded but useful. Use when this is solved: https://github.com/dart-lang/linter/issues/1381
     # - close_sinks
     - comment_references
     - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
-    # - diagnostic_describe_all_properties #TODO: https://dart-lang.github.io/linter/lints/diagnostic_describe_all_properties.html
+    # TODO: Not quite sure yet, as I have never used this before.
+    # - diagnostic_describe_all_properties
     - directives_ordering
     - do_not_use_environment
     - empty_catches
@@ -185,8 +203,7 @@ linter:
     - sort_unnamed_constructors_first
     - test_types_in_equals
     - throw_in_finally
-    # Experimental - Unreleased in Dart. We should use when ready.
-    # - tighten_type_of_initializing_formals
+    - tighten_type_of_initializing_formals
     - type_annotate_public_apis
     - type_init_formals
     - unawaited_futures
@@ -200,11 +217,9 @@ linter:
     - unnecessary_lambdas
     - unnecessary_new
     - unnecessary_null_aware_assignments
-    # Experimental - Unreleased in Dart. We should use when ready.
-    # - unnecessary_null_checks
+    - unnecessary_null_checks
     - unnecessary_null_in_if_null_operators
-    # Experimental - Unreleased in Dart. We should use when ready.
-    # - unnecessary_nullable_for_final_variable_declarations
+    - unnecessary_nullable_for_final_variable_declarations
     - unnecessary_overrides
     - unnecessary_parenthesis
     - unnecessary_raw_strings

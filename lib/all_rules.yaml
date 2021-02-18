@@ -4,7 +4,7 @@
 #
 # It's also important to keep updating this list based on the `yaml` above.
 #
-# Last updated version: 0.1.127 | 08/01/2021 (DD/MM/YYYY)
+# Last updated version: 0.1.129 | 15/02/2021 (DD/MM/YYYY)
 linter:
   rules:
     - always_declare_return_types
@@ -21,6 +21,7 @@ linter:
     - avoid_catching_errors
     - avoid_classes_with_only_static_members
     - avoid_double_and_int_checks
+    - avoid_dynamic_calls
     - avoid_empty_else
     - avoid_equals_and_hash_code_on_mutable_classes
     - avoid_escaping_inner_quotes
