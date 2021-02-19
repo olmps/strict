@@ -1,3 +1,8 @@
+## 1.0.0-nullsafety.1
+- Enabled `implicit-casts`;
+- Disabled `avoid_as`, `prefer_expression_function_bodies`, `sort_pub_dependencies` and
+`use_key_in_widget_constructors`.
+
 ## 1.0.0-nullsafety.0
 
 Addressed the remaining TODOs, while improving the description of some decisions. Also fixing the bad version naming.
