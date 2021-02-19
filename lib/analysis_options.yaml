@@ -1,19 +1,19 @@
 analyzer:
+  # Both of the strong-mode lints are really impactful throughout the project, and both of these might be rules that you
+  # may want to modify to `true` if they are too severe.
+  #
+  # We think that both of these rules are usually enforced in scenarios where we are manipulating untyped field/data,
+  # meaning: the `dynamic` type - this means a very high opportunity to access non-existing properties and have errors
+  # like NoSuchMethod, thrown while in runtime. If there is a need to use dynamic type, it would be done by explicitly
+  # declaring such fields as `dynamic`.
   strong-mode:
-    # Because we have opted to not use the `always_specify_types` rule, we should reinforce that dynamic should only be
-    # used when Dart can't infer so.
+    implicit-casts: false
     implicit-dynamic: false
-  #   implicit-casts: false
 
   errors:
     # The benefits of being able to inject environment variable are substantial. This should be used with care and
     # only when necessary.
     do_not_use_environment: warning
-
-    # Just like the bang operator (the `!` after optional types), we should not be restricted to use `as` to improve the
-    # readability of some edge-cases, when we are completly sure that the respective field can be cast to that
-    # particular type.
-    avoid_as: warning
 
 # The ones that don't have any comments are USUALLY (high emphasis on usually) worth due to standardizing concerns -
 # improves readability -, and because the own rules descriptions (in https://dart-lang.github.io/linter/lints/) are
@@ -36,7 +36,8 @@ linter:
     - always_use_package_imports
     - annotate_overrides
     - avoid_annotating_with_dynamic
-    - avoid_as
+    # Will soon be removed.
+    # - avoid_as
     - avoid_bool_literals_in_conditional_expressions
     - avoid_catches_without_on_clauses
     # Read more why we should use Exceptions to be caught instead of
@@ -162,7 +163,10 @@ linter:
     # between single/double quotes.
     # - prefer_double_quotes
     - prefer_equal_for_default_values
-    - prefer_expression_function_bodies
+    # We turned this off due to the fact that we don't want to force the use of this arrow-syntax return when we have a
+    # multiline return. Created an issue https://github.com/dart-lang/linter/issues/2469 in the linter where it might be
+    # actionable after the discussion.
+    # - prefer_expression_function_bodies
     - prefer_final_fields
     - prefer_final_in_for_each
     - prefer_final_locals
@@ -199,7 +203,9 @@ linter:
     - slash_for_doc_comments
     - sort_child_properties_last
     - sort_constructors_first
-    - sort_pub_dependencies
+    # While sorting the name of each dependency may be beneficial, grouping related dependencies may also be relevant,
+    # so this is completely personal, and I prefer to not add it.
+    # - sort_pub_dependencies
     - sort_unnamed_constructors_first
     - test_types_in_equals
     - throw_in_finally
@@ -232,7 +238,11 @@ linter:
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
     - use_is_even_rather_than_modulo
-    - use_key_in_widget_constructors
+    # While keys can be used for a couple of reasons, like reusing/reordering widgets of the same class, requiring it
+    # for all Widgets may not reflect all of the existing Widget's use-cases.
+    # Example: when we want to create a Widget that represents a page, which usually will only have one instance
+    # throughout the app lifecycle.
+    # - use_key_in_widget_constructors
     - use_late_for_private_fields_and_variables
     - use_raw_strings
     - use_rethrow_when_possible
