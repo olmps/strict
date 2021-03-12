@@ -1,3 +1,11 @@
+## 1.0.0
+
+First stable release of `strict`.
+
+- Added `deprecated_consistency`, `use_if_null_to_convert_nulls_to_bools` and `use_named_constants` (all unreleased
+yet);
+- Removed `avoid_as`.
+
 ## 1.0.0-nullsafety.1
 - Enabled `implicit-casts`;
 - Disabled `avoid_as`, `prefer_expression_function_bodies`, `sort_pub_dependencies` and
