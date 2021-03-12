@@ -36,8 +36,6 @@ linter:
     - always_use_package_imports
     - annotate_overrides
     - avoid_annotating_with_dynamic
-    # Will soon be removed.
-    # - avoid_as
     - avoid_bool_literals_in_conditional_expressions
     - avoid_catches_without_on_clauses
     # Read more why we should use Exceptions to be caught instead of
@@ -61,6 +59,8 @@ linter:
     - avoid_implementing_value_types
     - avoid_init_to_null
     - avoid_js_rounded_ints
+    # TODO: Unreleased, enable when available
+    # - avoid_multiple_declarations_per_line
     - avoid_null_checks_in_equality_operators
     - avoid_positional_boolean_parameters
     - avoid_print
@@ -102,6 +102,8 @@ linter:
     - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
+    # TODO: Unreleased, enable when available
+    # - deprecated_consistency
     # TODO: Not quite sure yet, as I have never used this before.
     # - diagnostic_describe_all_properties
     - directives_ordering
@@ -237,6 +239,8 @@ linter:
     - unsafe_html
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
+    # TODO: Unreleased, enable when available
+    # - use_if_null_to_convert_nulls_to_bools
     - use_is_even_rather_than_modulo
     # While keys can be used for a couple of reasons, like reusing/reordering widgets of the same class, requiring it
     # for all Widgets may not reflect all of the existing Widget's use-cases.
@@ -244,6 +248,8 @@ linter:
     # throughout the app lifecycle.
     # - use_key_in_widget_constructors
     - use_late_for_private_fields_and_variables
+    # TODO: Unreleased, enable when available
+    # - use_named_constants
     - use_raw_strings
     - use_rethrow_when_possible
     - use_setters_to_change_properties
