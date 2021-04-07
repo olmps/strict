@@ -141,7 +141,30 @@ linter:
     # - null_check_on_nullable_type_parameter
     - null_closures
     - omit_local_variable_types
-    - one_member_abstracts
+    # Avoid defining a one-member abstract class when a simple function will do.
+    #
+    # This is because there are some contexts where you may want to wrap a dependency to keep function signatures more
+    # succint. So, for instance, say that you have a dependency for a particular function, and you require that
+    # one-member abstracts should be followed, you will be required to pass it through as an argument.
+    #
+    # I.e.:
+    #
+    # WHILE THIS IS PREFERRED:
+    # String something(MyDependency dependency) => 'Implementation ' + dependency.getSomethingElse();
+    #
+    # WE SHOULD ALLOW THIS:
+    # abstract class MyDependentClass {
+    #   String something();
+    # }
+    #
+    # class MyDependentClassImpl implements MyDependentClass  {
+    #   MyDependentClassImpl(this.dependency);
+    #   MyDependency dependency;
+    #
+    #   @override
+    #   String something() => 'Implementation ' + dependency.getSomethingElse();
+    # }
+    # - one_member_abstracts
     - only_throw_errors
     - overridden_fields
     - package_api_docs
