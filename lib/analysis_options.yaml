@@ -1,3 +1,4 @@
+# Evaluate the rules using the catalogue: https://dart-lang.github.io/linter/lints/
 analyzer:
   # Both of the strong-mode lints are really impactful throughout the project, and both of these might be rules that you
   # may want to modify to `true` if they are too severe.
@@ -122,6 +123,8 @@ linter:
     - leading_newlines_in_multiline_strings
     - library_names
     - library_prefixes
+    # TODO: Unreleased, not even in the catalogue yet, must wait to evaluate
+    # - library_private_types_in_public_api
     # Possibly one of the most discussed topics in code-styling. We prefer to keep it at 120, due to several reasons.
     # This is a totally biased opinion and all three 80, 100 and 120 line lenghts have good/valid points. Although,
     # when exceeding 120, it becomes really hard to read.
@@ -210,6 +213,8 @@ linter:
     - prefer_is_not_operator
     - prefer_iterable_whereType
     - prefer_mixin
+    # TODO: Unreleased, not even in the catalogue yet, must wait to evaluate
+    # - prefer_null_aware_method_calls
     - prefer_null_aware_operators
     # Contradicts with `always_use_package_imports`. Relative imports can get really messy to read if the codebase
     # is slightly complex, frequently seeing things like: '../../../../../../importedFile.dart'. We prefer a more
@@ -224,6 +229,8 @@ linter:
     # to simply conform to this rule.
     # - public_member_api_docs
     - recursive_getters
+    # TODO: Unreleased, not even in the catalogue yet, must wait to evaluate
+    # - require_trailing_commas
     - sized_box_for_whitespace
     - slash_for_doc_comments
     - sort_child_properties_last
@@ -260,6 +267,8 @@ linter:
     - unnecessary_this
     - unrelated_type_equality_checks
     - unsafe_html
+    # TODO: Unreleased and Experimental, although it looks really nice - so we should enable when released
+    # - use_build_context_synchronously
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
     # TODO: Unreleased, enable when available
