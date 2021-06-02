@@ -1,3 +1,7 @@
+## 1.2.2
+
+- Removed conflicting `avoid_annotating_with_dynamic` rule.
+
 ## 1.1.0
 
 - Added `library_private_types_in_public_api`, `prefer_null_aware_method_calls`, `require_trailing_commas` and
