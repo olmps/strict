@@ -1,6 +1,6 @@
-## 1.2.2
+## Unreleased
 
-- Removed conflicting `avoid_annotating_with_dynamic` rule.
+- Disabled `avoid_annotating_with_dynamic`.
 
 ## 1.1.0
 
