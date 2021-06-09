@@ -1,19 +1,21 @@
-## Unreleased
+## 1.2.0
 
+- Added references to unreleased rules: `depend_on_referenced_packages`, `noop_primitive_operations`,
+`prefer_final_parameters` and `use_test_throws_matchers`.
 - Disabled `avoid_annotating_with_dynamic`.
 
 ## 1.1.0
 
-- Added `library_private_types_in_public_api`, `prefer_null_aware_method_calls`, `require_trailing_commas` and
-`use_build_context_synchronously` (all unreleased yet);
+- Added references to unreleased rules: `library_private_types_in_public_api`, `prefer_null_aware_method_calls`, 
+`require_trailing_commas` and `use_build_context_synchronously`;
 - Disabled `one_member_abstracts`.
 
 ## 1.0.0
 
 First stable release of `strict`.
 
-- Added `deprecated_consistency`, `use_if_null_to_convert_nulls_to_bools` and `use_named_constants` (all unreleased
-yet);
+- Added references to unreleased rules: `deprecated_consistency`, `use_if_null_to_convert_nulls_to_bools` and
+`use_named_constants`;
 - Removed `avoid_as`.
 
 ## 1.0.0-nullsafety.1
