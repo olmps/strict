@@ -50,7 +50,7 @@ linter:
     # particular namespace for that class.
     # - avoid_classes_with_only_static_members
     - avoid_double_and_int_checks
-    # Experimental/unreleased, but surely effective. Needs to be added when it's ready to use.
+    # TODO: Unreleased, and also not sure, needs more testing, but I THINK we should enable when available.
     # - avoid_dynamic_calls
     - avoid_empty_else
     - avoid_equals_and_hash_code_on_mutable_classes
@@ -85,7 +85,8 @@ linter:
     - avoid_shadowing_type_parameters
     - avoid_single_cascade_in_expression_statements
     - avoid_slow_async_io # Read more at: https://dart-lang.github.io/linter/lints/avoid_slow_async_io.html
-    # TODO: not quite sure yet
+    # There are a bunch of cases where `.toString()` is useful, like when using on primitives and other native classes,
+    # such as `Error` and `Exception`.
     # - avoid_type_to_string
     - avoid_types_as_parameter_names
     - avoid_types_on_closure_parameters
@@ -106,8 +107,10 @@ linter:
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
     # TODO: Unreleased, enable when available
+    # - depend_on_referenced_packages
+    # TODO: Unreleased, enable when available
     # - deprecated_consistency
-    # TODO: Not quite sure yet, as I have never used this before.
+    # TODO: Not sure, as I have never used this before.
     # - diagnostic_describe_all_properties
     - directives_ordering
     - do_not_use_environment
@@ -125,7 +128,7 @@ linter:
     - leading_newlines_in_multiline_strings
     - library_names
     - library_prefixes
-    # TODO: Unreleased, not even in the catalogue yet, must wait to evaluate
+    # TODO: Unreleased, enable when available
     # - library_private_types_in_public_api
     # Possibly one of the most discussed topics in code-styling. We prefer to keep it at 120, due to several reasons.
     # This is a totally biased opinion and all three 80, 100 and 120 line lenghts have good/valid points. Although,
@@ -142,7 +145,10 @@ linter:
     - no_logic_in_create_state
     - no_runtimeType_toString
     - non_constant_identifier_names
-    # Exprimental - Unreleased in Dart. We should use when ready.
+    # TODO: Unreleased, enable when available
+    # - noop_primitive_operations
+    # TODO: Not sure, couldn't quite understand why it's better to type cast to a non-nullable type instead of using
+    # the "!" bang operator.
     # - null_check_on_nullable_type_parameter
     - null_closures
     - omit_local_variable_types
@@ -194,12 +200,20 @@ linter:
     # - prefer_double_quotes
     - prefer_equal_for_default_values
     # We turned this off due to the fact that we don't want to force the use of this arrow-syntax return when we have a
-    # multiline return. Created an issue https://github.com/dart-lang/linter/issues/2469 in the linter where it might be
-    # actionable after the discussion.
+    # multiline return.
+    #
+    # Created an issue https://github.com/dart-lang/linter/issues/2469 where we briefly discussed the possibility of
+    # requiring this only if not multi-line, but it appears that it wouldn't make much sense given other lints.
+    #
+    # And just like https://dart.dev/guides/language/effective-dart/usage#consider-using--for-simple-members says, it's
+    # a CONSIDERATION, so it must be evaluate per case, and not simply whether it's single or multi line.
     # - prefer_expression_function_bodies
     - prefer_final_fields
     - prefer_final_in_for_each
     - prefer_final_locals
+    # TODO: Unreleased, and not quite sure if we should enforce this, as it gives a TON of verbosity to the overall
+    # codebase, with the benefit of never accidentally reassigning a parameter
+    # - prefer_final_parameters
     - prefer_for_elements_to_map_fromIterable
     - prefer_foreach
     - prefer_function_declarations_over_variables
@@ -215,7 +229,7 @@ linter:
     - prefer_is_not_operator
     - prefer_iterable_whereType
     - prefer_mixin
-    # TODO: Unreleased, not even in the catalogue yet, must wait to evaluate
+    # TODO: Unreleased, enable when available
     # - prefer_null_aware_method_calls
     - prefer_null_aware_operators
     # Contradicts with `always_use_package_imports`. Relative imports can get really messy to read if the codebase
@@ -231,7 +245,7 @@ linter:
     # to simply conform to this rule.
     # - public_member_api_docs
     - recursive_getters
-    # TODO: Unreleased, not even in the catalogue yet, must wait to evaluate
+    # TODO: Unreleased, enable when available
     # - require_trailing_commas
     - sized_box_for_whitespace
     - slash_for_doc_comments
@@ -269,7 +283,7 @@ linter:
     - unnecessary_this
     - unrelated_type_equality_checks
     - unsafe_html
-    # TODO: Unreleased and Experimental, although it looks really nice - so we should enable when released
+    # TODO: Unreleased, enable when available
     # - use_build_context_synchronously
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
@@ -288,6 +302,8 @@ linter:
     - use_rethrow_when_possible
     - use_setters_to_change_properties
     - use_string_buffers
+    # TODO: Unreleased, enable when available
+    # - use_test_throws_matchers
     - use_to_and_as_if_applicable
     - valid_regexps
     - void_checks
