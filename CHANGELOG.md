@@ -1,3 +1,14 @@
+## 1.3.0
+
+- Added references to unreleased rules: `avoid_final_parameters`, `no_leading_underscores_for_library_prefixes`,
+`no_leading_underscores_for_local_identifiers`, `secure_pubspec_urls`, `sized_box_shrink_expand`,
+`unnecessary_constructor_name`, `use_decorated_box`
+- Enabled `avoid_dynamic_calls`, `avoid_multiple_declarations_per_line`, `depend_on_referenced_packages`,
+`deprecated_consistency`, `eol_at_end_of_file`, `library_private_types_in_public_api`, `noop_primitive_operations`,
+`prefer_null_aware_method_calls`, `require_trailing_commas`, `use_build_context_synchronously`,
+`use_if_null_to_convert_nulls_to_bools`, `use_named_constants` and `use_test_throws_matchers`.
+- Updated explanations on `avoid_final_parameters` and `prefer_final_parameters`.
+
 ## 1.2.0
 
 - Added references to unreleased rules: `depend_on_referenced_packages`, `noop_primitive_operations`,
