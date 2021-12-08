@@ -50,20 +50,22 @@ linter:
     # particular namespace for that class.
     # - avoid_classes_with_only_static_members
     - avoid_double_and_int_checks
-    # TODO: Unreleased, and also not sure, needs more testing, but I THINK we should enable when available.
-    # - avoid_dynamic_calls
+    - avoid_dynamic_calls
     - avoid_empty_else
     - avoid_equals_and_hash_code_on_mutable_classes
     - avoid_escaping_inner_quotes
     - avoid_field_initializers_in_const_classes
+    # As we already disable `prefer_final_parameters`, we should enforce its counterpart, which will keep things
+    # consistent.
+    # TODO: Unreleased, enable when available
+    # - avoid_final_parameters
     # Dart uses follows some functional concepts, so there is no clear benefit for not allowing a single independent
     # forEach call.
     # - avoid_function_literals_in_foreach_calls
     - avoid_implementing_value_types
     - avoid_init_to_null
     - avoid_js_rounded_ints
-    # TODO: Unreleased, enable when available
-    # - avoid_multiple_declarations_per_line
+    - avoid_multiple_declarations_per_line
     - avoid_null_checks_in_equality_operators
     - avoid_positional_boolean_parameters
     - avoid_print
@@ -93,7 +95,7 @@ linter:
     - avoid_unnecessary_containers
     - avoid_unused_constructor_parameters
     - avoid_void_async
-    - avoid_web_libraries_in_flutter # Experimental
+    - avoid_web_libraries_in_flutter
     - await_only_futures
     - camel_case_extensions
     - camel_case_types
@@ -106,10 +108,8 @@ linter:
     - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
-    # TODO: Unreleased, enable when available
-    # - depend_on_referenced_packages
-    # TODO: Unreleased, enable when available
-    # - deprecated_consistency
+    - depend_on_referenced_packages
+    - deprecated_consistency
     # TODO: Not sure, as I have never used this before.
     # - diagnostic_describe_all_properties
     - directives_ordering
@@ -117,19 +117,19 @@ linter:
     - empty_catches
     - empty_constructor_bodies
     - empty_statements
+    - eol_at_end_of_file
     - exhaustive_cases
     - file_names
     - flutter_style_todos
     - hash_and_equals
     - implementation_imports
-    - invariant_booleans # Experimental
+    - invariant_booleans
     - iterable_contains_unrelated_type
     - join_return_with_assignment
     - leading_newlines_in_multiline_strings
     - library_names
     - library_prefixes
-    # TODO: Unreleased, enable when available
-    # - library_private_types_in_public_api
+    - library_private_types_in_public_api
     # Possibly one of the most discussed topics in code-styling. We prefer to keep it at 120, due to several reasons.
     # This is a totally biased opinion and all three 80, 100 and 120 line lenghts have good/valid points. Although,
     # when exceeding 120, it becomes really hard to read.
@@ -142,11 +142,14 @@ linter:
     # behave the same for the rest of the enum-like cases.
     # - no_default_cases
     - no_duplicate_case_values
+    # TODO: Unreleased, enable when available
+    # - no_leading_underscores_for_library_prefixes
+    # TODO: Unreleased, enable when available
+    # - no_leading_underscores_for_local_identifiers
     - no_logic_in_create_state
     - no_runtimeType_toString
     - non_constant_identifier_names
-    # TODO: Unreleased, enable when available
-    # - noop_primitive_operations
+    - noop_primitive_operations
     # TODO: Not sure, couldn't quite understand why it's better to type cast to a non-nullable type instead of using
     # the "!" bang operator.
     # - null_check_on_nullable_type_parameter
@@ -211,8 +214,8 @@ linter:
     - prefer_final_fields
     - prefer_final_in_for_each
     - prefer_final_locals
-    # TODO: Unreleased, and not quite sure if we should enforce this, as it gives a TON of verbosity to the overall
-    # codebase, with the benefit of never accidentally reassigning a parameter
+    # Gives a ton of verbosity on function declarations and can be controlled by `parameter_assignments`, which enforces
+    # that parameters of functions or methods can't be reassigned.
     # - prefer_final_parameters
     - prefer_for_elements_to_map_fromIterable
     - prefer_foreach
@@ -229,8 +232,7 @@ linter:
     - prefer_is_not_operator
     - prefer_iterable_whereType
     - prefer_mixin
-    # TODO: Unreleased, enable when available
-    # - prefer_null_aware_method_calls
+    - prefer_null_aware_method_calls
     - prefer_null_aware_operators
     # Contradicts with `always_use_package_imports`. Relative imports can get really messy to read if the codebase
     # is slightly complex, frequently seeing things like: '../../../../../../importedFile.dart'. We prefer a more
@@ -245,9 +247,12 @@ linter:
     # to simply conform to this rule.
     # - public_member_api_docs
     - recursive_getters
+    - require_trailing_commas
     # TODO: Unreleased, enable when available
-    # - require_trailing_commas
+    # - secure_pubspec_urls
     - sized_box_for_whitespace
+    # TODO: Unreleased, enable when available
+    # - sized_box_shrink_expand
     - slash_for_doc_comments
     - sort_child_properties_last
     - sort_constructors_first
@@ -264,6 +269,8 @@ linter:
     - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps
     - unnecessary_const
+    # TODO: Unreleased, enable when available
+    # - unnecessary_constructor_name
     # While var keyword is indeed shorter than final, when we allow this approach as our default behavior, we could
     # eventually create mutable variables where they aren't expected to change - contrariwise to the final approach.
     # - unnecessary_final
@@ -283,12 +290,12 @@ linter:
     - unnecessary_this
     - unrelated_type_equality_checks
     - unsafe_html
+    - use_build_context_synchronously
     # TODO: Unreleased, enable when available
-    # - use_build_context_synchronously
+    # - use_decorated_box
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
-    # TODO: Unreleased, enable when available
-    # - use_if_null_to_convert_nulls_to_bools
+    - use_if_null_to_convert_nulls_to_bools
     - use_is_even_rather_than_modulo
     # While keys can be used for a couple of reasons, like reusing/reordering widgets of the same class, requiring it
     # for all Widgets may not reflect all of the existing Widget's use-cases.
@@ -296,14 +303,12 @@ linter:
     # throughout the app lifecycle.
     # - use_key_in_widget_constructors
     - use_late_for_private_fields_and_variables
-    # TODO: Unreleased, enable when available
-    # - use_named_constants
+    - use_named_constants
     - use_raw_strings
     - use_rethrow_when_possible
     - use_setters_to_change_properties
     - use_string_buffers
-    # TODO: Unreleased, enable when available
-    # - use_test_throws_matchers
+    - use_test_throws_matchers
     - use_to_and_as_if_applicable
     - valid_regexps
     - void_checks
