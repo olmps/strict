@@ -27,7 +27,8 @@ linter:
     - always_require_non_null_named_parameters
     # Most of the times, letting Dart infer is just as readable and, consequently, way less verbose. There are a bunch
     # of cases (like frequently with generics) that we don't need to specify a particular type, but we would still be
-    # forced anyways (and more often than not, they are really verbose).
+    # forced anyways (and more often than not, they are really verbose). Dart design also corroborates with this idea:
+    # https://dart.dev/guides/language/effective-dart/design#avoid-type-annotating-initialized-local-variables
     #
     # To make sure that we don't have problems with `dynamic` types floating around, we set the `implicity-dynamic` to
     # `false`, meaning that we have to explicitly type your `dynamic` fields - just for type-safety measures.
@@ -40,6 +41,8 @@ linter:
     # that in some cases, one would have to explicitly ignore one or another rule and we don't want this inconsistency.
     # - avoid_annotating_with_dynamic
     - avoid_bool_literals_in_conditional_expressions
+    # There are certain scenarios where one want to explicitly catch any possible error, and these should be explicitly
+    # disabled, as they are way less frequent than catches with `on` clauses.
     - avoid_catches_without_on_clauses
     # Read more why we should use Exceptions to be caught instead of
     # [Errors](https://stackoverflow.com/a/58361954/8558606)
