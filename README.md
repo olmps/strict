@@ -26,7 +26,7 @@ Add this package to your `dev_dependencies` in your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  strict: ^1.3.0
+  strict: ^1.4.0
 ```
 
 and the following to your `analysis_options.yaml` (create one in the root of your project if you don't
