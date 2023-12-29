@@ -1,14 +1,14 @@
 # Evaluate the rules using the catalogue: https://dart-lang.github.io/linter/lints/
 analyzer:
-  # Both of language lints are really impactful throughout the project, and both of these might be rules that you
-  # may want to modify to `false` if they are too severe.
+  # All language lints are really impactful throughout the project, and these might be rules that you may want to modify
+  # to `false` if they are too severe.
   #
-  # We think that both of these rules are usually enforced in scenarios where we are manipulating untyped field/data,
-  # meaning: the `dynamic` type - this means a very high opportunity to access non-existing properties and have errors
-  # like NoSuchMethod thrown in runtime. If there is a need to use dynamic type, it would be done by explicitly
-  # declaring such fields as `dynamic`.
+  # These rules are usually enforced in scenarios where we are manipulating untyped field/data, meaning: the `dynamic`
+  # type - so, a very high opportunity to access non-existing properties and have errors like NoSuchMethod thrown in
+  # runtime. If there is a need to use dynamic type, it would be done by explicitly declaring such fields as `dynamic`.
   language:
     strict-casts: true
+    strict-inference: true
     strict-raw-types: true
 
   errors:
