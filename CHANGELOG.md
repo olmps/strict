@@ -1,3 +1,22 @@
+## 2.0.0
+
+Breaking changes:
+- Bumped Dart sdk min version from `2.16.1` to `3.1.0`.
+- Updated the deprecated `analyzer.strong-mode` in favor of the `analyzer.language` new options. All three
+new options were set to `true`.
+
+- Added and enabled: `collection_methods_unrelated_type`, `combinators_ordering`, `dangling_library_doc_comments`, 
+`deprecated_member_use_from_same_package`, `discarded_futures`, `implicit_call_tearoffs`, `invalid_case_patterns`,
+`library_annotations`, `matching_super_parameters`, `no_literal_bool_comparisons`, `no_self_assignments`,
+`no_wildcard_variable_uses`, `type_literal_in_constant_pattern`, `unnecessary_breaks`, `unnecessary_library_directive`,
+`unnecessary_null_aware_operator_on_extension_on_nullable`, `unnecessary_to_list_in_spreads`, `unreachable_from_main`,
+`use_colored_box`, `use_enums`, `use_string_in_part_of_directives` and `use_super_parameters`.
+- Added and disabled: `implicit_reopen`.
+- Disabled and removed: `always_require_non_null_named_parameters`, `invariant_booleans`,
+`iterable_contains_unrelated_type`, `list_remove_unrelated_type`, `prefer_equal_for_default_values`,
+`invariant_booleans` and `iterable_contains_unrelated_type`.
+- Removed: `avoid_returning_null` and `avoid_returning_null_for_future`.
+
 ## 1.4.0
 
 - Added and enabled: `conditional_uri_does_not_exist` and `unnecessary_late`.
