@@ -1,15 +1,15 @@
 # Evaluate the rules using the catalogue: https://dart-lang.github.io/linter/lints/
 analyzer:
-  # Both of the strong-mode lints are really impactful throughout the project, and both of these might be rules that you
-  # may want to modify to `true` if they are too severe.
+  # Both of language lints are really impactful throughout the project, and both of these might be rules that you
+  # may want to modify to `false` if they are too severe.
   #
   # We think that both of these rules are usually enforced in scenarios where we are manipulating untyped field/data,
   # meaning: the `dynamic` type - this means a very high opportunity to access non-existing properties and have errors
-  # like NoSuchMethod, thrown while in runtime. If there is a need to use dynamic type, it would be done by explicitly
+  # like NoSuchMethod thrown in runtime. If there is a need to use dynamic type, it would be done by explicitly
   # declaring such fields as `dynamic`.
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+  language:
+    strict-casts: true
+    strict-raw-types: true
 
   errors:
     # The benefits of being able to inject environment variable are substantial. This should be used with care and
@@ -24,7 +24,6 @@ linter:
     - always_declare_return_types
     - always_put_control_body_on_new_line
     - always_put_required_named_parameters_first
-    - always_require_non_null_named_parameters
     # Most of the times, letting Dart infer is just as readable and, consequently, way less verbose. There are a bunch
     # of cases (like frequently with generics) that we don't need to specify a particular type, but we would still be
     # forced anyways (and more often than not, they are really verbose). Dart design also corroborates with this idea:
@@ -77,11 +76,6 @@ linter:
     - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
-    # This made sense in a scenario where NNBD didn't exist. Now that we can deal with optional types, expecting an
-    # optional return from primitive types are completly acceptable.
-    # - avoid_returning_null
-    # Not applicable with NNBD.
-    # - avoid_returning_null_for_future
     # Not applicable with NNBD.
     # - avoid_returning_null_for_void
     - avoid_returning_this
@@ -106,16 +100,22 @@ linter:
     - cast_nullable_to_non_nullable
     # Not working as inteded but useful. Use when this is solved: https://github.com/dart-lang/linter/issues/1381
     # - close_sinks
+    - collection_methods_unrelated_type
+    - combinators_ordering
     - comment_references
     - conditional_uri_does_not_exist
     - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
+    - dangling_library_doc_comments
     - depend_on_referenced_packages
     - deprecated_consistency
+    - deprecated_member_use_from_same_package
     # TODO: Not sure, as I have never used this before.
     # - diagnostic_describe_all_properties
     - directives_ordering
+    # While there are plausible scenarios, such as fire and forget, they are much more unlikely than programming errors.
+    - discarded_futures
     - do_not_use_environment
     - empty_catches
     - empty_constructor_bodies
@@ -126,10 +126,15 @@ linter:
     - flutter_style_todos
     - hash_and_equals
     - implementation_imports
-    - invariant_booleans
-    - iterable_contains_unrelated_type
+    - implicit_call_tearoffs
+    # It adds too much boilerplate for very specific scenarios, such as libraries that are exposed to another bunch of
+    # plugins or libraries. When used in a "controlled" environment, it'll probably just add more boilerplate code than
+    # helping it being explicit "reopen".
+    # - implicit_reopen
+    - invalid_case_patterns
     - join_return_with_assignment
     - leading_newlines_in_multiline_strings
+    - library_annotations
     - library_names
     - library_prefixes
     - library_private_types_in_public_api
@@ -137,8 +142,8 @@ linter:
     # This is a totally biased opinion and all three 80, 100 and 120 line lenghts have good/valid points. Although,
     # when exceeding 120, it becomes really hard to read.
     # - lines_longer_than_80_chars
-    - list_remove_unrelated_type
     - literal_only_boolean_expressions
+    - matching_super_parameters
     - missing_whitespace_between_adjacent_strings
     - no_adjacent_strings_in_list
     # There are a lot of scenarios where you want to switch over a particular cases that share something in common, and
@@ -147,8 +152,11 @@ linter:
     - no_duplicate_case_values
     - no_leading_underscores_for_library_prefixes
     - no_leading_underscores_for_local_identifiers
+    - no_literal_bool_comparisons
     - no_logic_in_create_state
     - no_runtimeType_toString
+    - no_self_assignments
+    - no_wildcard_variable_uses
     - non_constant_identifier_names
     - noop_primitive_operations
     # TODO: Not sure, couldn't quite understand why it's better to type cast to a non-nullable type instead of using
@@ -202,7 +210,6 @@ linter:
     # normally come with single quotes, and this is enough of a reason to use it, as there is no other clear distinction
     # between single/double quotes.
     # - prefer_double_quotes
-    - prefer_equal_for_default_values
     # We turned this off due to the fact that we don't want to force the use of this arrow-syntax return when we have a
     # multiline return.
     #
@@ -264,9 +271,11 @@ linter:
     - tighten_type_of_initializing_formals
     - type_annotate_public_apis
     - type_init_formals
+    - type_literal_in_constant_pattern
     - unawaited_futures
     - unnecessary_await_in_return
     - unnecessary_brace_in_string_interps
+    - unnecessary_breaks
     - unnecessary_const
     - unnecessary_constructor_name
     # While var keyword is indeed shorter than final, when we allow this approach as our default behavior, we could
@@ -275,8 +284,10 @@ linter:
     - unnecessary_getters_setters
     - unnecessary_lambdas
     - unnecessary_late
+    - unnecessary_library_directive
     - unnecessary_new
     - unnecessary_null_aware_assignments
+    - unnecessary_null_aware_operator_on_extension_on_nullable
     - unnecessary_null_checks
     - unnecessary_null_in_if_null_operators
     - unnecessary_nullable_for_final_variable_declarations
@@ -287,10 +298,14 @@ linter:
     - unnecessary_string_escapes
     - unnecessary_string_interpolations
     - unnecessary_this
+    - unnecessary_to_list_in_spreads
+    - unreachable_from_main
     - unrelated_type_equality_checks
     - unsafe_html
     - use_build_context_synchronously
+    - use_colored_box
     - use_decorated_box
+    - use_enums
     - use_full_hex_values_for_flutter_colors
     - use_function_type_syntax_for_parameters
     - use_if_null_to_convert_nulls_to_bools
@@ -306,6 +321,8 @@ linter:
     - use_rethrow_when_possible
     - use_setters_to_change_properties
     - use_string_buffers
+    - use_string_in_part_of_directives
+    - use_super_parameters
     - use_test_throws_matchers
     - use_to_and_as_if_applicable
     - valid_regexps
