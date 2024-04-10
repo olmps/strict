@@ -2,6 +2,7 @@
 
 - Updated reference to new `all.yaml` rules, now tracking Dart SDK's version, as the past linter repo moved to the sdk.
 - Added explanation on `library_names`.
+<br>
 
 - Added and enabled: `annotate_redeclares`.
 - Added and disabled: `missing_code_block_language_in_doc_comment`.
@@ -13,6 +14,7 @@
 - Bumped Dart sdk min version from `2.16.1` to `3.1.0`.
 - Updated the deprecated `analyzer.strong-mode` in favor of the `analyzer.language` new options. All three
 new options were set to `true`.
+<br>
 
 - Added and enabled: `collection_methods_unrelated_type`, `combinators_ordering`, `dangling_library_doc_comments`, 
 `deprecated_member_use_from_same_package`, `discarded_futures`, `implicit_call_tearoffs`, `invalid_case_patterns`,
