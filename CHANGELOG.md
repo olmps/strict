@@ -1,6 +1,15 @@
+## 2.1.0
+
+- Updated reference to new `all.yaml` rules, now tracking Dart SDK's version, as the past linter repo moved to the sdk.
+- Added explanation on `library_names`.
+
+- Added and enabled: `annotate_redeclares`.
+- Added and disabled: `missing_code_block_language_in_doc_comment`.
+- Added references to unreleased rules: `unintended_html_in_doc_comment` and `unnecessary_library_name`.
+
 ## 2.0.0
 
-Breaking changes:
+**Breaking changes**:
 - Bumped Dart sdk min version from `2.16.1` to `3.1.0`.
 - Updated the deprecated `analyzer.strong-mode` in favor of the `analyzer.language` new options. All three
 new options were set to `true`.
