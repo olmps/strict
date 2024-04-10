@@ -1,5 +1,5 @@
 name: strict
-version: 2.0.0
+version: 2.1.0
 description: A heavily opinionated analysis_options for Dart/Flutter projects with strict - but justified - lint rules
 repository: https://github.com/olmps/strict
 issue_tracker: https://github.com/olmps/strict/issues
